@@ -1,4 +1,4 @@
-# TemperatureAlertSystem
+# THermometer Temperature Alert System in Celsius & Fahrenheit
 # Technology Summarry: 
 GraphQL Mutator, Programming Language: C#, .NET6, ASP.Core Web Application.
 # Development Approach Summary: 
