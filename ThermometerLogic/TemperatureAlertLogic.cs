@@ -3,21 +3,10 @@
 namespace TemperatureAlertSystem.ThermometerLogic
 {
     public class TemperatureAlertLogic
-    {
-        private static float Temperature;
-        private Dictionary<string, Criterion> AlertCriteria;
-
-        public TemperatureAlertLogic()
-        {
-            Temperature = 0.0f;
-            AlertCriteria = new Dictionary<string, Criterion>();
-        }
-      
-        public static bool TemperatureUpdate(float _nextTemperature, Criterion criterion)
-        { 
-            float previousTemperature = Temperature;
-            Temperature = _nextTemperature;            
-            
+    {       
+             
+        public static bool TemperatureUpdate(int consumerId, float currentTemperature, float previousTemperature, Criterion criterion)
+        {            
             bool alertConsumer = false;   
             float arbitraryThreshold = criterion.ArbitraryThreshold;
             float insignificantFluctuation = criterion.InsignificantFluctuation;
@@ -25,28 +14,39 @@ namespace TemperatureAlertSystem.ThermometerLogic
 
             if (direction != Direction.None)
             {
-                if (direction == Direction.Rising && previousTemperature < arbitraryThreshold && Temperature >= arbitraryThreshold)
+                if (direction == Direction.Rising && previousTemperature < arbitraryThreshold && currentTemperature >= arbitraryThreshold)
                 {
                     alertConsumer = true;                    
                 }
-                else if (direction == Direction.Falling && previousTemperature > arbitraryThreshold && Temperature <= arbitraryThreshold)
+                else if (direction == Direction.Falling && previousTemperature > arbitraryThreshold && currentTemperature <= arbitraryThreshold)
                 {
                     alertConsumer = true;                  
                 }                
             }
-            else if (Math.Abs(Temperature - arbitraryThreshold) > insignificantFluctuation)
+            else if (Math.Abs(currentTemperature - arbitraryThreshold) > insignificantFluctuation)
             {
                 alertConsumer = true;               
             }      
 
             if (alertConsumer) 
             {
-                Console.WriteLine($"Threshold breached: ArbitraryThreshold:{arbitraryThreshold}°C" +
-                        $"\ninsignificantFluctuation:{insignificantFluctuation}" +
+                Console.WriteLine($"\n***************\n" +
+                        $"Consumer{consumerId}'s Threshold Breached!!: " +
+                        $"\nArbitraryThreshold:{arbitraryThreshold}°C" +
+                        $"\ninsignificantFluctuation:+/-{insignificantFluctuation}°C" +
                         $"\ndirection:{direction}" +
                         $"\nPreviousTemperature:{previousTemperature}°C" +
-                        $"\nCurrentTemperature:{Temperature}");
-                Console.WriteLine($"Alerting Consumer that Criterion is reached: ({arbitraryThreshold}°C)");
+                        $"\nCurrentTemperature:{currentTemperature}°C");               
+            }
+            else
+            {
+                Console.WriteLine($"\n***************\n" +
+                        $"Consumer{consumerId}'s Threshold NOT! breached: " +
+                        $"\nArbitraryThreshold:{arbitraryThreshold}°C" +
+                        $"\ninsignificantFluctuation:+/-{insignificantFluctuation}°C" +
+                        $"\ndirection:{direction}" +
+                        $"\nPreviousTemperature:{previousTemperature}°C" +
+                        $"\nCurrentTemperature:{currentTemperature}°C");
             }
 
             return alertConsumer;

@@ -3,12 +3,14 @@
     //Producer Thread
     public class ProducerThread
     {
-        private readonly int SLEEP = 2000;
+        private readonly int SLEEP = 5000;
         public List<float> Temperatures { get; }
         private readonly Dictionary<int, Criterion> AlertCriteriaMap;
         private readonly AutoResetEvent[] consumerEvents;
         protected float Celsius { get; set; }
         private float Fahrenheit; 
+        public float PreviousTemperature {get; set;}
+        public float CurrentTemperature { get; set;}
     
 
         public ProducerThread(List<float> _temperatures, Dictionary<int, Criterion> _alertCriteriaMap)
@@ -48,6 +50,8 @@
             {               
                 lock (Temperatures)
                 {
+                    PreviousTemperature = Celsius;
+
                     if (Temperatures.Count == 0)
                     {
                         Console.WriteLine("Temperatures list is empty. Exiting the producer thread.");
@@ -55,7 +59,7 @@
                     }
 
                     Celsius = Temperatures[0];
-                    Temperatures.RemoveAt(0);
+                    Temperatures.RemoveAt(0);                  
                 }
 
                 Console.WriteLine($"Producer thread processing Temperature: {Celsius}°C");
@@ -63,7 +67,7 @@
                 for (int i = 0; i < consumerEvents.Length; i++)
                 {
                     Criterion criterion = AlertCriteriaMap[i];
-                    bool alertConsumer = TemperatureAlertLogic.TemperatureUpdate(Celsius, criterion);
+                    bool alertConsumer = TemperatureAlertLogic.TemperatureUpdate(i, Celsius, PreviousTemperature, criterion);
 
                     if (alertConsumer)
                     {
