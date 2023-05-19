@@ -15,18 +15,20 @@ namespace TemperatureAlertSystem.Utilities
     {
         public static Dictionary<int, Criterion> ReadAlertCriteriaData()
         {
-            Criterion criterion_0 = new(0f, 0.5f, Direction.Rising);
-            Criterion criterion_1 = new(-0.5f, 0f, Direction.Falling);
-            Criterion criterion_2 = new(100f, 0.5f, Direction.Falling);
-            Criterion criterion_3 = new(100f, 0f, Direction.Rising);
+            Criterion criterion_0 = new(0f, 0.5f, Direction.None);
+            Criterion criterion_1 = new(0f, 0.5f, Direction.Rising);
+            Criterion criterion_2 = new(-0.5f, 0f, Direction.Falling);
+            Criterion criterion_3 = new(100f, 0.5f, Direction.Falling);
+            Criterion criterion_4 = new(100f, 0f, Direction.Rising);
 
             var criteriaMap = new Dictionary<int, Criterion>();
             criteriaMap.Add(0, criterion_0);
             criteriaMap.Add(1, criterion_1);
             criteriaMap.Add(2, criterion_2);
             criteriaMap.Add(3, criterion_3);
+            criteriaMap.Add(4, criterion_4);
 
-           return criteriaMap;
+            return criteriaMap;
         }     
     }
 }

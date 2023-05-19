@@ -38,8 +38,8 @@ namespace TemperatureAlertSystem.ThermometerLogic
                 Console.WriteLine($"\n***************\n" +
                         $"Consumer{consumerId}'s Threshold Breached!!: " +
                         $"\nArbitraryThreshold:{arbitraryThreshold}°C" +
-                        $"\ninsignificantFluctuation:+/-{insignificantFluctuation}°C" +
-                        $"\ndirection:{direction}" +
+                        $"\nInsignificantFluctuation:+/-{insignificantFluctuation}°C" +
+                        $"\nDirection:{direction}" +
                         $"\nPreviousTemperature:{previousTemperature}°C" +
                         $"\nCurrentTemperature:{currentTemperature}°C");               
             }
@@ -48,8 +48,8 @@ namespace TemperatureAlertSystem.ThermometerLogic
                 Console.WriteLine($"\n***************\n" +
                         $"Consumer{consumerId}'s Threshold NOT! breached: " +
                         $"\nArbitraryThreshold:{arbitraryThreshold}°C" +
-                        $"\ninsignificantFluctuation:+/-{insignificantFluctuation}°C" +
-                        $"\ndirection:{direction}" +
+                        $"\nInsignificantFluctuation:+/-{insignificantFluctuation}°C" +
+                        $"\nDirection:{direction}" +
                         $"\nPreviousTemperature:{previousTemperature}°C" +
                         $"\nCurrentTemperature:{currentTemperature}°C");
             }

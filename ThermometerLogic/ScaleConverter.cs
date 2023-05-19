@@ -2,7 +2,7 @@
 {
     /* Author: David DLV
      * Date:5/18/2023
-     * This class has a single responsibility to convert Celcius to Fahrenheit
+     * This class has a single responsibility to convert Celsius to Fahrenheit
      * Note that my design really only needs to convert Celsius -> Fahrenheit only in this direction because
      * the data provider is using scale Celsius. That said I did provide both conversions for testing purposes.
      * The mathematical equations are with order of operations:
@@ -11,9 +11,9 @@
      */
     public class ScaleConverter
     {
-        public static float ConvertToFahrenheit(float celciusTemperature)
+        public static float ConvertToFahrenheit(float celsiusTemperature)
         {
-            return (celciusTemperature * 9 / 5) + 32;
+            return (celsiusTemperature * 9 / 5) + 32;
         }
 
         public static float ConvertToCelsius(float fahrenheitTemperature)

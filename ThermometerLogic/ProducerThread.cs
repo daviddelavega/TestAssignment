@@ -58,7 +58,7 @@
 
                     if (Temperatures.Count == 0)
                     {
-                        Console.WriteLine("Temperatures list is empty. Exiting the producer thread.");
+                        Console.WriteLine("All Temperature Data successfully published. Exiting the producer thread.");
                         break;
                     }
 
