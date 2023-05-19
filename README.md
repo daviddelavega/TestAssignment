@@ -16,7 +16,7 @@ There is a GraphQL Mutator at the front end which feeds the Temperature Data fro
 >. I achieved this Requirement: The callers/consumers, can supply any granularity of alert thresholds they desire. The thermometer will inform them only when that specific threshold is breached.
 
 >.Note that callers of the class may not want to be repeatedly informed that a given threshold has been reached if the temperature is fluctuating around the threshold point. For example, consider the following temperature readings from the external source:
-Examle GraphQL mutation payload of temperature data fed into The Thermometer Temperature Alert System:
+>.Example GraphQL mutation payload of temperature data fed into The Thermometer Temperature Alert System:
 mutation {
       uploadTemperatures(inputTemperatures: 
     [1.5,
