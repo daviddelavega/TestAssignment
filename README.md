@@ -1,4 +1,4 @@
-# Termometer Temperature Alert System in Celsius & Fahrenheit
+# Thermometer Temperature Alert System in Celsius & Fahrenheit
 # Technology Stack: 
 API: GraphQL, Programming Language: C#, Project: .NET6, ASP.Net Web Application.
 # Development Approach Summary: 
