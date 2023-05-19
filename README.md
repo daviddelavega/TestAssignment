@@ -41,12 +41,12 @@ mutation {
         message
        }
      }
->. I achieved this requirement. Take a look at my input example above, you will see temperature fluctuations Falling, Rising, above and below freezing point and boiling point. My testing the application has proven that the caller will get notified if the temperatures fluctuate up or down. The code logic and testing is  displayable.
+>. I achieved this Requirement. Take a look at my input example above, you will see temperature fluctuations Falling, Rising, above and below freezing point and boiling point. My testing the application has proven that the caller will get notified if the temperatures fluctuate up or down. The code logic and testing is  displayable.
 
 >. Some callers may only want to be informed that the temperature has reached 0 degrees C once because they consider fluctuations of +/- 0.5 degrees insignificant. 
 >. I achieved this Requirement: Callers will be informed if the temperature fluctuates above the insignificant absolute value.
 
 >. It may also be important for some callers to be informed that a threshold has been reached only if the threshold was reached from a certain direction. For example, some callers may only care about a freezing point threshold if the previous temperature was above freezing (i.e. they only care about the threshold if it occurred while the temperature was dropping).
->. I have achieved Requiment: There is a Direction attribute in a caller's Alert Crieria it can be None, Rising, Falling. The code logic will alert the caller/consumer if the direction matches the criteria.
+>. I have achieved Requirement: There is a Direction attribute in a caller's Alert Criteria it can be None, Rising, Falling. The code logic will alert the caller/consumer if the direction matches the criteria.
 
 >. I threw in a Bonus Feature: A GraphQL Query that will return Celsius temperature, Fahrenheit temperature, along with a message, and of course each field is optional, which is part of the beauty of GraphQL.
