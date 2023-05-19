@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "aTNJgi7LX2atjXeTWH/jZcl+H0HwTPKPp6YLgAmx40Q=",
+  "Source": "TemperatureAlertSystem",
+  "BasePath": "_content/TemperatureAlertSystem",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
