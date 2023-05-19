@@ -1,9 +1,9 @@
-#TemperatureAlertSystem
-#Technology Summarry: 
+# TemperatureAlertSystem
+# Technology Summarry: 
 GraphQL Mutator, Programming Language: C#, .NET6, ASP.Core Web Application.
-#Development Approach Summary: 
+# Development Approach Summary: 
 There is a GraphQL Mutator at the front end which feeds the Temperature Data to The Application to meet the requirement that the data had to come from outside. The application has producer/consumer threads. The producer thread does most of the heavy lifting, and facilitates the progression through the temperature Alert System. There are multiple consumer threads started, 1 for each Alert Criteria, 4 total, easily expandable. There is 1 Producer thread. The producer thread is artificially slowed down with a sleep set at 5 seconds, this is for purposes of being able to read the Temperature output and validate Thresholds and notifications are given when appropriate and not given when not within the consumer's Alert Criteria.
-#Requirements
+# Requirements
 ----- Test instructions ---
 
 1. Design and implement (in the OO language of your choice) a thermometer class or classes that read the temperature of some external source. 
