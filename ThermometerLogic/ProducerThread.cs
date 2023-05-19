@@ -1,6 +1,10 @@
 ﻿namespace TemperatureAlertSystem.ThermometerLogic
 {
-    //Producer Thread
+   /* Author: David DLV
+    * Date:5/18/2023
+    * This class facilitates as the Temperature Alert distributor. It is a producer thread that will invoke the exact client thread
+    * that has met the alert criteria.
+    */
     public class ProducerThread
     {
         private readonly int SLEEP = 5000;

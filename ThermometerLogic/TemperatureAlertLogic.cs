@@ -2,6 +2,11 @@
 
 namespace TemperatureAlertSystem.ThermometerLogic
 {
+   /* Author: David DLV
+    * Date:5/18/2023
+    * This class acts as the brain of the thermometer, the logic within defines exacly all the conditions of when to alert a caller, and when
+    * not to alert a caller.
+    */
     public class TemperatureAlertLogic
     {       
              

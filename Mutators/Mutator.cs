@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel;
-using TemperatureAlertSystem.Enums;
-using TemperatureAlertSystem.Models;
 using TemperatureAlertSystem.ThermometerLogic;
 using TemperatureAlertSystem.Utilities;
 
 namespace TemperatureAlertSystem.Mutators
 {
 
-    /* 
+    /* Author: David DLV
+     * Date:5/18/2023
+     * This class is responsible for the GraphQA Mutator, which facilitates the receiving of external temperature data for the system
+     * Below is one good example of the GraphQL mutation payload.
+  
         mutation {
           uploadTemperatures(inputTemperatures: 
         [1.5,

@@ -1,5 +1,10 @@
 ﻿namespace TemperatureAlertSystem.ThermometerLogic
 {
+   /* Author: David DLV
+    * Date:5/18/2023
+    * This class acts as the caller/consumer of Thermometer Temperature Alerts. The Producer thread will invoke the consumer thread only when
+    * the alert criteria is met.
+    */
     public class ConsumerThread
     {
         private readonly int consumerIndex;
