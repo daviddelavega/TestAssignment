@@ -7,7 +7,7 @@ namespace TemperatureAlertSystem.Mutators
 
     /* Author: David DLV
      * Date:5/18/2023
-     * This class is responsible for the GraphQA Mutator, which facilitates the receiving of external temperature data for the system
+     * This class is responsible for the GraphQL Mutator, which facilitates the receiving of external temperature data for the system
      * Below is one good example of the GraphQL mutation payload.
   
         mutation {
@@ -21,7 +21,16 @@ namespace TemperatureAlertSystem.Mutators
         -0.5,
         0.0,
         0.5,
-        0.0
+        0.0,
+        0.0,
+        50.5,
+        98.5,
+        99.0,
+        100.0,
+        101.5,
+        100.0,
+        99.0,
+        101.5
         ]) 
            {
             isSuccess
@@ -34,22 +43,8 @@ namespace TemperatureAlertSystem.Mutators
         [Description("Uploads the Temperatures as Celsius to The TemperatureAlertLogic's TemperatureAlertSystem.")]
         public async Task<TemperatureOutput> UploadTemperatures(List<float> inputTemperatures)
         {
-            var criteriaMap = AlertCriteriaModelReader.ReadAlertCriteriaData();            
-
-            var producer = new ProducerThread(inputTemperatures, criteriaMap);
-
-            var consumers = new List<ConsumerThread>();
-
-            for (int i = 0; i < criteriaMap.Keys.Count; i++)
-            {
-                var consumerThread = new ConsumerThread(i, producer);
-                consumers.Add(consumerThread);
-                consumerThread.Start();
-            }
-
-            producer.Start();          
-
-            return new TemperatureOutput(true, "Temperatures Loaded successfully Thermometer Alert System is now Running.");
+            new StartThermometerAlertSystem(inputTemperatures).Start();
+            return new TemperatureOutput(true, "Temperatures Loaded successfully. Thermometer Alert System is now Running.");
         }       
     }
 

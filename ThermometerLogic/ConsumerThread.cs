@@ -32,13 +32,7 @@
                     Console.WriteLine($"Consumer#{consumerIndex}'s Has Received an Alert from the Producer: Processing Temperature Data...");
                     Console.WriteLine($"***************");
                     Console.WriteLine($"Celsius: {producerThread.getCelsius()}°C -> Consumer#{consumerIndex}");
-                    Console.WriteLine($"Fahrenheit: {producerThread.getFahrenheit()}°F -> Consumer#{consumerIndex}");
-
-                    if (producerThread.Temperatures.Count == 0)
-                    {
-                        Console.WriteLine($"Consumer {consumerIndex}: All Temperature Data successfully consumed. Exiting the consumer thread.");
-                        break;
-                    }
+                    Console.WriteLine($"Fahrenheit: {producerThread.getFahrenheit()}°F -> Consumer#{consumerIndex}");                   
                 }                
             }
         }

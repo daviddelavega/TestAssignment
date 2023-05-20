@@ -11,10 +11,10 @@
         public List<float> Temperatures { get; }
         private readonly Dictionary<int, Criterion> AlertCriteriaMap;
         private readonly AutoResetEvent[] consumerEvents;
-        protected float Celsius { get; set; }
-        private float Fahrenheit; 
+        protected float Celsius { get; set; }       
         public float PreviousTemperature {get; set;}
         public float CurrentTemperature { get; set;}
+        private bool DisplayEndingMessage = true;
     
 
         public ProducerThread(List<float> _temperatures, Dictionary<int, Criterion> _alertCriteriaMap)
@@ -23,7 +23,7 @@
             AlertCriteriaMap = _alertCriteriaMap;
             consumerEvents = new AutoResetEvent[AlertCriteriaMap.Count];
             InitializeConsumerEvents();
-        }
+        }       
 
         private void InitializeConsumerEvents()
         {
@@ -54,33 +54,46 @@
             {               
                 lock (Temperatures)
                 {
-                    PreviousTemperature = Celsius;
-
-                    if (Temperatures.Count == 0)
+                    if (Temperatures.Count != 0)
                     {
-                        Console.WriteLine("All Temperature Data successfully published. Exiting the producer thread.");
-                        break;
-                    }
+                        DisplayEndingMessage = true;
 
-                    Celsius = Temperatures[0];
-                    Temperatures.RemoveAt(0);                  
-                }
+                        PreviousTemperature = Celsius;
 
-                Console.WriteLine($"Producer thread processing Temperature: {Celsius}°C");
+                        Celsius = Temperatures[0];
+                        Temperatures.RemoveAt(0);
 
-                for (int i = 0; i < consumerEvents.Length; i++)
-                {
-                    Criterion criterion = AlertCriteriaMap[i];
-                    bool alertConsumer = TemperatureAlertLogic.TemperatureUpdate(i, Celsius, PreviousTemperature, criterion);
+                        Console.WriteLine($"Producer thread processing Temperature: {Celsius}°C");
 
-                    if (alertConsumer)
+                        for (int i = 0; i < consumerEvents.Length; i++)
+                        {
+                            Criterion criterion = AlertCriteriaMap[i];
+                            bool alertConsumer = TemperatureAlertLogic.TemperatureUpdate(i, Celsius, PreviousTemperature, criterion);
+
+                            if (alertConsumer)
+                            {
+                                Console.WriteLine($"Temperature {Celsius}°C has triggered an Alert for Consumer#{i}'s threshold. The Producer is Notifying Consumer#{i}...");
+                                consumerEvents[i].Set();
+                            }
+                        }
+
+                        Thread.Sleep(SLEEP);
+                    }  
+                    else
                     {
-                        Console.WriteLine($"Temperature {Celsius}°C has triggered an Alert for Consumer#{i}'s threshold. The Producer is Notifying Consumer#{i}...");
-                        consumerEvents[i].Set();
+                        DisplayEndOfDataMessage();
+                        DisplayEndingMessage = false;                                          
                     }
-                }
+                }                
+            }
+        }
 
-                Thread.Sleep(SLEEP);
+        private void DisplayEndOfDataMessage()
+        {
+            if (DisplayEndingMessage)
+            {
+                Console.WriteLine($"All Temperature Data successfully Processed. Final temperature processed was {Celsius}°C");
+                Console.WriteLine($"Please Load more temperature data in Celsius °C scale for additional processing...");
             }
         }
 
