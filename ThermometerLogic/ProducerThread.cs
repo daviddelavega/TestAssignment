@@ -1,4 +1,6 @@
-﻿namespace TemperatureAlertSystem.ThermometerLogic
+﻿using TemperatureAlertSystem.Models;
+
+namespace TemperatureAlertSystem.ThermometerLogic
 {
    /* Author: David DLV
     * Date:5/18/2023
@@ -8,29 +10,41 @@
     public class ProducerThread
     {
         private readonly int SLEEP = 5000;
-        public List<float> Temperatures { get; }
-        private readonly Dictionary<int, Criterion> AlertCriteriaMap;
-        private readonly AutoResetEvent[] consumerEvents;
+        private List<float> Temperatures { get; set; }
+        private Dictionary<int, Criterion> AlertCriteriaMap { get; set; }
+        private AutoResetEvent[] consumerEvents;
         protected float Celsius { get; set; }       
         public float PreviousTemperature {get; set;}
         public float CurrentTemperature { get; set;}
-        private bool DisplayEndingMessage = true;
-    
+        private bool DisplayEndingMessage = true;        
 
-        public ProducerThread(List<float> _temperatures, Dictionary<int, Criterion> _alertCriteriaMap)
+        public ProducerThread()
         {
-            Temperatures = _temperatures;
-            AlertCriteriaMap = _alertCriteriaMap;
-            consumerEvents = new AutoResetEvent[AlertCriteriaMap.Count];
-            InitializeConsumerEvents();
+            Temperatures = new();
+            AlertCriteriaMap = new();
         }       
+
+        public ProducerThread SetTemperatures(List<float> _temperatures) 
+        {
+            this.Temperatures = _temperatures;
+            return this;
+        }
+
+        public ProducerThread SetAlertCriteriaMap(Dictionary<int, Criterion> _alertCriteriaMap)
+        {
+            this.AlertCriteriaMap = _alertCriteriaMap;            
+            InitializeConsumerEvents();
+            return this;
+        }
 
         private void InitializeConsumerEvents()
         {
-            for (int i = 0; i < consumerEvents.Length; i++)
+            consumerEvents = new AutoResetEvent[AlertCriteriaMap.Count];
+
+            foreach(KeyValuePair<int, Criterion> kvp in AlertCriteriaMap)
             {
-                consumerEvents[i] = new AutoResetEvent(false);
-            }
+                consumerEvents[kvp.Key] = new AutoResetEvent(false);
+            }         
         }
 
         public float getCelsius()
@@ -54,7 +68,7 @@
             {               
                 lock (Temperatures)
                 {
-                    if (Temperatures.Count != 0)
+                    if (consumerEvents != null && Temperatures.Count != 0 && AlertCriteriaMap.Count != 0)
                     {
                         DisplayEndingMessage = true;
 
@@ -65,15 +79,16 @@
 
                         Console.WriteLine($"Producer thread processing Temperature: {Celsius}°C");
 
-                        for (int i = 0; i < consumerEvents.Length; i++)
+                        foreach (KeyValuePair<int, Criterion> kvp in AlertCriteriaMap)
                         {
-                            Criterion criterion = AlertCriteriaMap[i];
-                            bool alertConsumer = TemperatureAlertLogic.TemperatureUpdate(i, Celsius, PreviousTemperature, criterion);
+                            Criterion criterion = kvp.Value;
+
+                            bool alertConsumer = TemperatureAlertLogic.TemperatureUpdate(kvp.Key, Celsius, PreviousTemperature, criterion);
 
                             if (alertConsumer)
                             {
-                                Console.WriteLine($"Temperature {Celsius}°C has triggered an Alert for Consumer#{i}'s threshold. The Producer is Notifying Consumer#{i}...");
-                                consumerEvents[i].Set();
+                                Console.WriteLine($"Temperature {Celsius}°C has triggered an Alert for Consumer#{kvp.Key}'s threshold. The Producer is Notifying Consumer#{kvp.Key}...");
+                                consumerEvents[kvp.Key].Set();
                             }
                         }
 

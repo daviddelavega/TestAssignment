@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using HotChocolate.Types;
+using System.ComponentModel;
+using TemperatureAlertSystem.Enums;
+using TemperatureAlertSystem.Models;
 using TemperatureAlertSystem.ThermometerLogic;
 
 namespace TemperatureAlertSystem.Mutators
@@ -40,12 +43,32 @@ namespace TemperatureAlertSystem.Mutators
     public class Mutation
     {
         [Description("Uploads the Temperatures as Celsius to The TemperatureAlertLogic's TemperatureAlertSystem.")]
-        public async Task<TemperatureOutput> UploadTemperatures(List<float> inputTemperatures)
+        public async Task<Output> UploadTemperatures(List<float> inputTemperatures)
         {
-            new StartThermometerAlertSystem(inputTemperatures).Start();
-            return new TemperatureOutput(true, "Temperatures Loaded successfully. Thermometer Alert System is now Running.");
-        }       
+             ThermometerAlertSystem
+                .GetProducerThread()
+                .SetTemperatures(inputTemperatures);
+
+            return new Output(true, "Temperatures Loaded successfully.");
+        }
+
+        [Description("Adds a new Consumer given the Alert Criteria as Celsius into the TemperatureAlertSystem.")]
+        public async Task<Output> AddConsumer(List<AlertCriteriaModel> alertCriteria)
+        {
+            ThermometerAlertSystem.AddConsumer(alertCriteria);           
+
+            return new Output(true, "Consumer(s) with AlertCriteria Added successfully.");
+        }
     }
 
-    public record TemperatureOutput(bool IsSuccess, string Message);
+    public record Output(bool IsSuccess, string Message);
+    public record AlertCriteriaModel(int id, float arbitraryThreshold, float insignificantFluctuation, Direction direction);
+
+
+
+
+
+
+
+
 }
