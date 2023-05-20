@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using TemperatureAlertSystem.ThermometerLogic;
-using TemperatureAlertSystem.Utilities;
 
 namespace TemperatureAlertSystem.Mutators
 {

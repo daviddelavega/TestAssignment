@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using TemperatureAlertSystem.Enums;
-using TemperatureAlertSystem.Models;
+﻿using TemperatureAlertSystem.Enums;
 using TemperatureAlertSystem.ThermometerLogic;
 
 namespace TemperatureAlertSystem.Utilities
