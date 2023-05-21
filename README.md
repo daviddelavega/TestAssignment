@@ -15,7 +15,7 @@ I achieved this Requirement: The thermometer returns both Fahrenheit and Celsius
 3. It must be possible for callers of the class(es) to define arbitrary thresholds such as freezing and boiling at which the thermometer class will inform the appropriate callers that a specific threshold has been reached. 
 I achieved this Requirement: The callers/consumers, can supply any granularity of alert thresholds they desire. The thermometer will inform them only when that specific threshold is breached.
 
-4.Note that callers of the class may not want to be repeatedly informed that a given threshold has been reached if the temperature is fluctuating around the threshold point. For example, consider the following temperature readings from the external source (GraphQL mutation):
+4. Note that callers of the class may not want to be repeatedly informed that a given threshold has been reached if the temperature is fluctuating around the threshold point. For example, consider the following temperature readings from the external source (GraphQL mutation):
 
 mutation {
       uploadTemperatures(inputTemperatures: 
