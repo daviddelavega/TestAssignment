@@ -8,6 +8,11 @@ namespace TemperatureAlertSystem.ThermometerLogic
     * Date:5/18/2023
     * This class acts as the brain of the thermometer, the logic within defines exacly all the conditions of when to alert a caller, and when
     * not to alert a caller.
+    * The FluxCapacitor is the key to the logic of the Temperature alert System Algorithm I developed. The FluxCapacitor, is essentially calculating the
+    * Temperature Flux i.e. the Temperature changes over time, the flux capacitor tracks the amount of flux since the last time Marty(a caller) was alerted
+    * the Flux Capacitor is there as code logic to account for a temperature data set that blips along at a low rate. It is 
+    * essential to the algorithm I created because the thermometer reading could +/- at a rate lower than the insignificant value, adding up to a big Flux.
+    * The Flux Capacitor is also a Key ingredient to Time Travel....
     */
     public class TemperatureAlertLogic
     {
@@ -20,7 +25,6 @@ namespace TemperatureAlertSystem.ThermometerLogic
             float previousTemperature = temperatures[0];
 
             Console.WriteLine($"Processing Temperature: {previousTemperature}°C");
-
            
             AlertMarty = false;
             FluxCapacitor = 0f;
