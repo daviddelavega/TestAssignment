@@ -31,10 +31,12 @@
                 {
                     var temperatureResults = ThermometerAlertSystem.GetTemperatureResults();
 
+                    var count = 0;
+
                     temperatureResults.ForEach(temperature =>
                         Console.WriteLine(
                             $"***************" +
-                            $"\nConsumer#{consumerIndex} Processing Temperature Results Data:" +
+                            $"\nConsumer#{consumerIndex} Processing Temperature Result #{++count}:" +
                             $"\nCelsius:{temperature.Celsius}°C -> Consumer#{consumerIndex}" +
                             $"\nFahrenheit:{temperature.Fahrenheit}°F -> Consumer#{consumerIndex}" +
                             $"\n***************")
