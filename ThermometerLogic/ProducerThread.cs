@@ -8,7 +8,8 @@ namespace TemperatureAlertSystem.ThermometerLogic
     * that has met the alert criteria.
     */
     public class ProducerThread
-    {        
+    {
+        private readonly int SLEEP = 1500;
         private List<float> Temperatures { get; set; }
         private Dictionary<int, Criterion> AlertCriteriaMap { get; set; }
         private AutoResetEvent[] consumerEvents;
@@ -85,9 +86,18 @@ namespace TemperatureAlertSystem.ThermometerLogic
                                 consumerEvents[kvp.Key].Set();
                             }
                         }
+
+                        Thread.Sleep(SLEEP);
+
                         Array.Clear(consumerEvents, 0, consumerEvents.Length);
                         Temperatures.Clear();
                         AlertCriteriaMap.Clear();
+
+                        Console.WriteLine(
+                           $"*************" +
+                           $"\nAll Temperature Data is Successfully Processed." +
+                           $"\nPlease send More Temperature Data and Add More Consumer(s) In Any Order" +
+                           $"\n***********");
                     }                   
                 }                
             }
