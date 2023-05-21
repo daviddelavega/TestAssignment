@@ -11,6 +11,8 @@ namespace TemperatureAlertSystem.ThermometerLogic
     */
     public class TemperatureAlertLogic
     {
+        private static float FluxCapacitor;
+        private static bool AlertMarty;
         public static List<Temperature> CheckTemperature(int consumerId, List<float> temperatures, Criterion criterion)
         {         
             var temperatureList = new List<Temperature>();
@@ -19,49 +21,44 @@ namespace TemperatureAlertSystem.ThermometerLogic
 
             Console.WriteLine($"Processing Temperature: {previousTemperature}°C");
 
-            bool threshold_breached = false;
-            bool alertConsumer = false;
-            var fluxCapacitor = 0f;
+           
+            AlertMarty = false;
+            FluxCapacitor = 0f;
 
             for (int i = 1; i < temperatures.Count; i++)
             {
                 float currentTemperature = temperatures[i];
 
                 Console.WriteLine($"Processing Temperature: {currentTemperature}°C");
-
-                if (criterion.Direction != Direction.None)
-                {
-                    if (criterion.Direction == Direction.Rising && previousTemperature < criterion.ArbitraryThreshold && currentTemperature >= criterion.ArbitraryThreshold)
+                
+                if (criterion.Direction == Direction.Rising)
+                {                    
+                    if (currentTemperature > previousTemperature)
                     {
-                        alertConsumer = true;
+                        AlertMarty = FluxCapacitor_Activated(currentTemperature, previousTemperature, criterion);
                     }
-                    else if (criterion.Direction == Direction.Falling && previousTemperature > criterion.ArbitraryThreshold && currentTemperature <= criterion.ArbitraryThreshold)
+                    else
                     {
-                        alertConsumer = true;
+                        AlertMarty = false;
                     }
                 }
-                else
+                else if (criterion.Direction == Direction.Falling) 
                 {
-                    var abs_insignificantFluctuation = Math.Abs(criterion.InsignificantFluctuation);
-                    var abs_previousTemperature = Math.Abs(previousTemperature);
-
-                    if (!alertConsumer && (abs_previousTemperature > abs_insignificantFluctuation))
+                    if (currentTemperature < previousTemperature)
                     {
-                        fluxCapacitor += Math.Abs(previousTemperature);
+                        AlertMarty = FluxCapacitor_Activated(currentTemperature, previousTemperature, criterion);
                     }
-
-                    bool abs_insignificant_breached = (fluxCapacitor > abs_insignificantFluctuation);
-
-                    if (currentTemperature == criterion.ArbitraryThreshold)
+                    else
                     {
-                        threshold_breached = true;
-                    }
-
-                    bool preliminaryResult = CheckPreliminaryResult(currentTemperature, previousTemperature, criterion.ArbitraryThreshold);
-                    alertConsumer = threshold_breached && preliminaryResult && abs_insignificant_breached;
+                        AlertMarty = false;
+                    }                    
+                }             
+                else if (criterion.Direction == Direction.None)
+                {
+                    AlertMarty = FluxCapacitor_Activated(currentTemperature, previousTemperature, criterion);
                 }
 
-                if (alertConsumer)
+                if (AlertMarty)
                 {
                     Console.WriteLine($"\n***************\n" +
                         $"Consumer{consumerId}'s Threshold Breached!!: " +
@@ -80,16 +77,40 @@ namespace TemperatureAlertSystem.ThermometerLogic
 
                     temperatureList.Add(temperatureModel);
 
-                    fluxCapacitor = 0;
+                    FluxCapacitor = 0;
                 }
 
-                    previousTemperature = currentTemperature;
-                
+                previousTemperature = currentTemperature;                
             }         
 
             return temperatureList;
         }
-        private static bool CheckPreliminaryResult(float currentTemperature, float previousTemperature, float arbitraryThreshold)
+
+        private static bool FluxCapacitor_Activated(float currentTemperature, float previousTemperature,  Criterion criterion)
+        {
+            var abs_insignificantFluctuation = Math.Abs(criterion.InsignificantFluctuation);
+            var abs_previousTemperature = Math.Abs(previousTemperature); 
+            bool threshold_breached = false;
+
+            if (!AlertMarty && (abs_previousTemperature > abs_insignificantFluctuation))
+            {
+                FluxCapacitor += Math.Abs(previousTemperature);
+            }
+
+            bool abs_insignificant_breached = (FluxCapacitor > abs_insignificantFluctuation);
+
+            if (currentTemperature == criterion.ArbitraryThreshold)
+            {
+                threshold_breached = true;
+            }
+
+            bool preliminaryResult = InExclusiveRange(currentTemperature, previousTemperature, criterion.ArbitraryThreshold);
+            AlertMarty = threshold_breached && preliminaryResult && abs_insignificant_breached;
+
+            return AlertMarty;
+        }
+
+        private static bool InExclusiveRange(float currentTemperature, float previousTemperature, float arbitraryThreshold)
         {
             bool result = false;
             if ((currentTemperature >= arbitraryThreshold && previousTemperature < arbitraryThreshold)
