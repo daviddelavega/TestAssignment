@@ -36,7 +36,7 @@
                     temperatureResults.ForEach(temperature =>
                         Console.WriteLine(
                             $"***************" +
-                            $"\nConsumer#{consumerIndex} Processing Temperature Result #{++count}:" +
+                            $"\nConsumer#{consumerIndex} Processing Temperature Alert #{++count}:" +
                             $"\nCelsius:{temperature.Celsius}°C -> Consumer#{consumerIndex}" +
                             $"\nFahrenheit:{temperature.Fahrenheit}°F -> Consumer#{consumerIndex}" +
                             $"\n***************")
