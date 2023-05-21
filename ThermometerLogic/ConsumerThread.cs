@@ -39,7 +39,8 @@
                             $"\nFahrenheit:{temperature.Fahrenheit}°F -> Consumer#{consumerIndex}" +
                             $"\n***************")
                     );                               
-                }                
+                }
+                break;
             }
         }
     }

@@ -84,8 +84,10 @@ namespace TemperatureAlertSystem.ThermometerLogic
                                 ThermometerAlertSystem.SetTemperatureResults(temperatureResultsList);                               
                                 consumerEvents[kvp.Key].Set();
                             }
-                        }                                            
-                        break;
+                        }
+                        Array.Clear(consumerEvents, 0, consumerEvents.Length);
+                        Temperatures.Clear();
+                        AlertCriteriaMap.Clear();
                     }                   
                 }                
             }
