@@ -1,12 +1,9 @@
-﻿using HotChocolate.Types;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using TemperatureAlertSystem.Enums;
-using TemperatureAlertSystem.Models;
 using TemperatureAlertSystem.ThermometerLogic;
 
 namespace TemperatureAlertSystem.Mutators
 {
-
     /* Author: David DLV
      * Date:5/18/2023
      * This class is responsible for the GraphQL Mutator, which facilitates the receiving of external temperature data for the system

@@ -1,6 +1,4 @@
-﻿using TemperatureAlertSystem.Models;
-
-namespace TemperatureAlertSystem.ThermometerLogic
+﻿namespace TemperatureAlertSystem.ThermometerLogic
 {
    /* Author: David DLV
     * Date:5/18/2023

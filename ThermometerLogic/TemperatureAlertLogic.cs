@@ -1,5 +1,4 @@
-﻿using HotChocolate.Types;
-using TemperatureAlertSystem.Enums;
+﻿using TemperatureAlertSystem.Enums;
 using TemperatureAlertSystem.Models;
 
 namespace TemperatureAlertSystem.ThermometerLogic
