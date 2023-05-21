@@ -15,8 +15,8 @@ There is a GraphQL Mutator at the front end which feeds the Temperature Data fro
 >. It must be possible for callers of the class(es) to define arbitrary thresholds such as freezing and boiling at which the thermometer class will inform the appropriate callers that a specific threshold has been reached. 
 >. I achieved this Requirement: The callers/consumers, can supply any granularity of alert thresholds they desire. The thermometer will inform them only when that specific threshold is breached.
 
->.Note that callers of the class may not want to be repeatedly informed that a given threshold has been reached if the temperature is fluctuating around the threshold point. For example, consider the following temperature readings from the external source:
->.Example GraphQL mutation payload of temperature data fed into The Thermometer Temperature Alert System:
+>.Note that callers of the class may not want to be repeatedly informed that a given threshold has been reached if the temperature is fluctuating around the threshold point. For example, consider the following temperature readings from the external source (GraphQL mutation):
+
 mutation {
       uploadTemperatures(inputTemperatures: 
     [1.5,
@@ -41,10 +41,9 @@ mutation {
         message
        }
      }
->. I achieved this Requirement. Take a look at my input example above, you will see temperature fluctuations Falling, Rising, above and below freezing point and boiling point. My testing the application has proven that the caller will get notified if the temperatures fluctuate up or down. The code logic and testing is  displayable.
-
->. Some callers may only want to be informed that the temperature has reached 0 degrees C once because they consider fluctuations of +/- 0.5 degrees insignificant. 
->. I achieved this Requirement: Callers will be informed if the temperature fluctuates above the insignificant absolute value.
+     
+Some callers may only want to be informed that the temperature has reached 0 degrees C once because they consider fluctuations of +/- 0.5 degrees insignificant. 
+>. I achieved this Requirement: Callers will be informed if the temperature fluctuates above the insignificant absolute value. I provided an example input data above, you will see temperature fluctuations Falling, Rising, above and below freezing point and boiling point. My testing the application has proven that the caller will get notified if the temperatures fluctuation is greater than the absolute value of the insignificant value. The code logic shows this and my testing proves this.
 
 >. It may also be important for some callers to be informed that a threshold has been reached only if the threshold was reached from a certain direction. For example, some callers may only care about a freezing point threshold if the previous temperature was above freezing (i.e. they only care about the threshold if it occurred while the temperature was dropping).
 >. I have achieved Requirement: There is a Direction attribute in a caller's Alert Criteria it can be None, Rising, Falling. The code logic will alert the caller/consumer if the direction matches the criteria.
