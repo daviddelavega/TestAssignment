@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\daved\\repository\\backupTAS\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj": {}
+    "C:\\Users\\daved\\repository\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\daved\\repository\\backupTAS\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj": {
+    "C:\\Users\\daved\\repository\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\daved\\repository\\backupTAS\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj",
+        "projectUniqueName": "C:\\Users\\daved\\repository\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj",
         "projectName": "TemperatureAlertSystem",
-        "projectPath": "C:\\Users\\daved\\repository\\backupTAS\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj",
+        "projectPath": "C:\\Users\\daved\\repository\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj",
         "packagesPath": "C:\\Users\\daved\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\daved\\repository\\backupTAS\\TemperatureAlertSystem\\obj\\",
+        "outputPath": "C:\\Users\\daved\\repository\\TemperatureAlertSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
