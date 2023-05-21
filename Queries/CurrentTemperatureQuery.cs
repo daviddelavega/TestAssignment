@@ -51,9 +51,9 @@ namespace TemperatureAlertSystem.Queries
             switch (_scale)
             {
                 case Scale.Fahrenheit:
-                    return ProducerThread.getFahrenheit();
+                    return ProducerThread.GetFahrenheit();
                 case Scale.Celsius:
-                    return ProducerThread.getCelsius();
+                    return ProducerThread.GetCelsius();
                 default:
                     throw new NotSupportedException();
             }

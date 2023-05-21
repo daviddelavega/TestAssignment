@@ -8,15 +8,13 @@ namespace TemperatureAlertSystem.ThermometerLogic
     * that has met the alert criteria.
     */
     public class ProducerThread
-    {
-        private readonly int SLEEP = 5000;
+    {        
         private List<float> Temperatures { get; set; }
         private Dictionary<int, Criterion> AlertCriteriaMap { get; set; }
         private AutoResetEvent[] consumerEvents;
         protected float Celsius { get; set; }       
         public float PreviousTemperature {get; set;}
-        public float CurrentTemperature { get; set;}
-        private bool DisplayEndingMessage = true;        
+        public float CurrentTemperature { get; set;}    
 
         public ProducerThread()
         {
@@ -47,12 +45,17 @@ namespace TemperatureAlertSystem.ThermometerLogic
             }         
         }
 
-        public float getCelsius()
+        public float GetCelsius()
         {
             return Celsius;
         }
 
-        public float getFahrenheit()
+        public void SetCelsius(float _celsius)
+        {
+            this.Celsius = _celsius;
+        }
+
+        public float GetFahrenheit()
         {
             return ScaleConverter.ConvertToFahrenheit(Celsius);
         }
@@ -62,7 +65,7 @@ namespace TemperatureAlertSystem.ThermometerLogic
             ThreadPool.QueueUserWorkItem(ProcessTemperature);
         }
 
-        private void ProcessTemperature(object state)
+        private async void ProcessTemperature(object state)
         {
             while (true)
             {               
@@ -70,47 +73,23 @@ namespace TemperatureAlertSystem.ThermometerLogic
                 {
                     if (consumerEvents != null && Temperatures.Count != 0 && AlertCriteriaMap.Count != 0)
                     {
-                        DisplayEndingMessage = true;
-
-                        PreviousTemperature = Celsius;
-
-                        Celsius = Temperatures[0];
-                        Temperatures.RemoveAt(0);
-
-                        Console.WriteLine($"Producer thread processing Temperature: {Celsius}°C");
-
                         foreach (KeyValuePair<int, Criterion> kvp in AlertCriteriaMap)
                         {
                             Criterion criterion = kvp.Value;
 
-                            bool alertConsumer = TemperatureAlertLogic.TemperatureUpdate(kvp.Key, Celsius, PreviousTemperature, criterion);
-
-                            if (alertConsumer)
+                            var temperatureResultsList = TemperatureAlertLogic.CheckTemperature(kvp.Key, Temperatures, criterion);
+                          
+                            if (temperatureResultsList.Count > 0)
                             {
-                                Console.WriteLine($"Temperature {Celsius}°C has triggered an Alert for Consumer#{kvp.Key}'s threshold. The Producer is Notifying Consumer#{kvp.Key}...");
+                                ThermometerAlertSystem.SetTemperatureResults(temperatureResultsList);                               
                                 consumerEvents[kvp.Key].Set();
                             }
-                        }
-
-                        Thread.Sleep(SLEEP);
-                    }  
-                    else
-                    {
-                        DisplayEndOfDataMessage();
-                        DisplayEndingMessage = false;                                          
-                    }
+                        }                                            
+                        break;
+                    }                   
                 }                
             }
-        }
-
-        private void DisplayEndOfDataMessage()
-        {
-            if (DisplayEndingMessage)
-            {
-                Console.WriteLine($"All Temperature Data successfully Processed. Final temperature processed was {Celsius}°C");
-                Console.WriteLine($"Please Load more temperature data in Celsius °C scale for additional processing...");
-            }
-        }
+        }       
 
         public AutoResetEvent GetConsumerEvent(int consumerIndex)
         {

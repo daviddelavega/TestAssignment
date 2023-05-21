@@ -1,22 +1,25 @@
-﻿using TemperatureAlertSystem.Mutators;
+﻿using TemperatureAlertSystem.Models;
+using TemperatureAlertSystem.Mutators;
 using TemperatureAlertSystem.Queries;
 
 namespace TemperatureAlertSystem.ThermometerLogic
 {
     public class ThermometerAlertSystem
     {
-        private static ProducerThread producerThread;       
+        private static ProducerThread ProducerThread;
+
+        private static List<Temperature> TemperatureResults;
 
         public static ProducerThread GetProducerThread() 
         {
-            return producerThread; 
+            return ProducerThread; 
         }
 
         public static void Start()
         {
-            producerThread = new ProducerThread();
-            producerThread.Start();
-            CurrentTemperatureQuery.SetProducerThread(producerThread);
+            ProducerThread = new ProducerThread();
+            ProducerThread.Start();
+            CurrentTemperatureQuery.SetProducerThread(ProducerThread);
             Console.WriteLine("Producer Thread Started");
         }
 
@@ -41,6 +44,16 @@ namespace TemperatureAlertSystem.ThermometerLogic
             });
 
             ThermometerAlertSystem.GetProducerThread().SetAlertCriteriaMap(alertCriteriaMap);
+        }
+
+        public static void SetTemperatureResults(List<Temperature> _temperatureResults)
+        {
+            TemperatureResults = _temperatureResults;
+        }
+
+        public static List<Temperature> GetTemperatureResults()
+        {
+            return TemperatureResults;
         }
     }
 }

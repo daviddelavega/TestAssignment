@@ -21,7 +21,7 @@
             ThreadPool.QueueUserWorkItem(ConsumeTemperature);
         }
 
-        private void ConsumeTemperature(object state)
+        private async void ConsumeTemperature(object state)
         {
             while (true)
             {
@@ -29,10 +29,16 @@
 
                 lock (producerThread)
                 {
-                    Console.WriteLine($"Consumer#{consumerIndex}'s Has Received an Alert from the Producer: Processing Temperature Data...");
-                    Console.WriteLine($"***************");
-                    Console.WriteLine($"Celsius: {producerThread.getCelsius()}°C -> Consumer#{consumerIndex}");
-                    Console.WriteLine($"Fahrenheit: {producerThread.getFahrenheit()}°F -> Consumer#{consumerIndex}");                   
+                    var temperatureResults = ThermometerAlertSystem.GetTemperatureResults();
+
+                    temperatureResults.ForEach(temperature =>
+                        Console.WriteLine(
+                            $"***************" +
+                            $"\nConsumer#{consumerIndex} Processing Temperature Results Data:" +
+                            $"\nCelsius:{temperature.Celsius}°C -> Consumer#{consumerIndex}" +
+                            $"\nFahrenheit:{temperature.Fahrenheit}°F -> Consumer#{consumerIndex}" +
+                            $"\n***************")
+                    );                               
                 }                
             }
         }
