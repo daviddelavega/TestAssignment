@@ -4,7 +4,7 @@
 # Programming Language: C#
 # Platform: .NET 6
 # Project: ASP.Net Web Application.
-# Extras: Sanity Test Cases created. DockerFile created. GraphQL Query created.
+# Extras: 30 Sanity Test Cases created. DockerFile created. GraphQL Query created.
 # Development Approach Summary: 
 There is a GraphQL Mutator at the front end which feeds the Temperature Data from the outside to the application. The application has producer/consumer threads. The producer thread does most of the heavy lifting, and facilitates the progression through the temperature Alert System. There are multiple consumer threads started, 1 for each Alert Criteria, 4 total, easily expandable. There is 1 Producer thread. The producer thread is artificially slowed down with a sleep set at 5 seconds, this is for purposes of being able to read the Temperature output and validate Thresholds and notifications are given when appropriate and not given when not within the consumer's Alert Criteria.
 # Requirements & How I Achieved Them Each
