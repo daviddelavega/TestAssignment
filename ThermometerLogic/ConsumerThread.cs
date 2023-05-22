@@ -25,8 +25,8 @@
         {
             while (true)
             {
-                if(producerThread != null)
-                {
+                if(producerThread != null && producerThread.GetConsumerEvent(consumerIndex)! == null)
+                {                    
                     producerThread.GetConsumerEvent(consumerIndex).WaitOne(); // Wait for notification
 
                     lock (producerThread)
@@ -44,7 +44,7 @@
                                 $"\n***************")
                         );
                     }
-                    break;
+                    break;                                      
                 }
                 
             }
