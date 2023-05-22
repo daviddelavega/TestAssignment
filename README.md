@@ -53,3 +53,4 @@ I achieved this Requirement: Callers will be informed if the temperature fluctua
 I have achieved Requirement: There is a Direction attribute in a caller's Alert Criteria it can be None, Rising, Falling. The code logic will alert the caller/consumer if the direction matches the criteria.
 
 I threw in a Bonus Feature: A GraphQL Query that will return Celsius temperature, Fahrenheit temperature, along with a message, and of course each field is optional, which is part of the beauty of GraphQL.
+I also created All the Sanity Test Cases in tabular format and the Test Case file is in the repo.
