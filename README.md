@@ -6,12 +6,12 @@
 # Project: ASP.Net Web Application.
 # Extras: 30 Sanity Test Cases created. DockerFile created. GraphQL Query created.
 # Development Approach Summary: 
-There is a GraphQL Mutator at the front end which feeds the Temperature Data from the outside to the application. The application has producer/consumer threads. The producer thread does most of the heavy lifting, and facilitates the progression through the temperature Alert System. There are multiple consumer threads started, 1 for each Alert Criteria, 4 total, easily expandable. There is 1 Producer thread. The producer thread is artificially slowed down with a sleep set at 5 seconds, this is for purposes of being able to read the Temperature output and validate Thresholds and notifications are given when appropriate and not given when not within the consumer's Alert Criteria.
+There is a GraphQL Mutator at the front end which feeds the Temperature Data from the outside to the application. A second mutator feeds in each consumer's Arbitrary Criteria (temperature threshold, insignificant fluctuation, Direction). The application has producer/consumer threads. The producer thread does most of the heavy lifting, and facilitates the progression through the temperature Alert System. There are multiple consumer threads started, 1 for each Alert Criteria, each call to the mutator adds a consumer, or they can be all added once in a list of consumers, giving the API lots of flexibility. 
 # Requirements & How I Achieved Them Each
 ----- Test instructions ---
 
 1. Design and implement (in the OO language of your choice) a thermometer class or classes that read the temperature of some external source. 
-I achieved this Requirement: Implemented in C#. The temperature data originates from GraphQL mutator, which is an external source.
+I achieved this Requirement: Implemented in C#. The temperature data originates from GraphQL mutator, which is an external source. Each Consumer of the temperature data is also created via a GraphQL API call.
 
 2. The thermometer needs to be able to provide temperature in both Fahrenheit and Celsius.  
 I achieved this Requirement: The thermometer returns both Fahrenheit and Celsius when an Alert Critieria (i.e. threshold) has been breached.
