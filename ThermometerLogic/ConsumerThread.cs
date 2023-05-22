@@ -25,7 +25,7 @@
         {
             while (true)
             {
-                if(producerThread != null && producerThread.GetConsumerEvent(consumerIndex)! == null)
+                if(producerThread != null && producerThread.GetConsumerEvent(consumerIndex) != null)
                 {                    
                     producerThread.GetConsumerEvent(consumerIndex).WaitOne(); // Wait for notification
 
