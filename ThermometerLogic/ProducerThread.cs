@@ -54,6 +54,11 @@
             this.Celsius = _celsius;
         }
 
+        public float GetFahrenheit(float _celsius)
+        {
+            return ScaleConverter.ConvertToFahrenheit(_celsius);
+        }
+
         public float GetFahrenheit()
         {
             return ScaleConverter.ConvertToFahrenheit(Celsius);

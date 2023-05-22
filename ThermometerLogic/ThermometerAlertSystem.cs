@@ -18,8 +18,7 @@ namespace TemperatureAlertSystem.ThermometerLogic
         public static void Start()
         {
             ProducerThread = new ProducerThread();
-            ProducerThread.Start();
-            CurrentTemperatureQuery.SetProducerThread(ProducerThread);
+            ProducerThread.Start();          
             Console.WriteLine("Producer Thread Started");
         }
 

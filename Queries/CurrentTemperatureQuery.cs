@@ -40,20 +40,14 @@ namespace TemperatureAlertSystem.Queries
             return response;
         }
 
-        public static void SetProducerThread(ProducerThread _producerThread) 
-        {
-            ProducerThread = _producerThread;
-        }
-
-
         private float GetCurrentTemperature(Scale _scale)
         {
             switch (_scale)
             {
                 case Scale.Fahrenheit:
-                    return ProducerThread.GetFahrenheit();
+                    return ThermometerAlertSystem.GetProducerThread().GetFahrenheit();
                 case Scale.Celsius:
-                    return ProducerThread.GetCelsius();
+                    return ThermometerAlertSystem.GetProducerThread().GetCelsius();
                 default:
                     throw new NotSupportedException();
             }

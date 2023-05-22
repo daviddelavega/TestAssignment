@@ -72,7 +72,7 @@ namespace TemperatureAlertSystem.ThermometerLogic
                         $"\nCurrentTemperature:{currentTemperature}°C");
 
                     var temperatureModel = new Temperature();
-                    temperatureModel.Fahrenheit = ThermometerAlertSystem.GetProducerThread().GetFahrenheit();
+                    temperatureModel.Fahrenheit = ThermometerAlertSystem.GetProducerThread().GetFahrenheit(currentTemperature);
                     temperatureModel.Celsius = currentTemperature;
                     temperatureModel.Message =
                             $"Temperature Alert for Consumer#{consumerId}'s arbitraryThreshold. " +
@@ -80,8 +80,10 @@ namespace TemperatureAlertSystem.ThermometerLogic
 
                     temperatureList.Add(temperatureModel);
 
-                    FluxCapacitor = 0;
+                    FluxCapacitor = 0;                    
                 }
+                //For the GraphQL Query bonus feature
+                ThermometerAlertSystem.GetProducerThread().SetCelsius(currentTemperature);
 
                 previousTemperature = currentTemperature;                
             }         
