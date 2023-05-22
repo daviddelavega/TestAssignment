@@ -102,13 +102,13 @@ namespace TemperatureAlertSystem.ThermometerLogic
 
             bool abs_insignificant_breached = (FluxCapacitor > abs_insignificantFluctuation);
 
-            if (currentTemperature == criterion.ArbitraryThreshold)
+            if (currentTemperature == criterion.ArbitraryThreshold && currentTemperature != previousTemperature)
             {
                 threshold_breached = true;
             }
 
             bool preliminaryResult = InExclusiveRange(currentTemperature, previousTemperature, criterion.ArbitraryThreshold);
-            AlertMarty = threshold_breached && preliminaryResult && abs_insignificant_breached;
+            AlertMarty = threshold_breached || preliminaryResult && abs_insignificant_breached;
 
             return AlertMarty;
         }

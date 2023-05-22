@@ -25,24 +25,28 @@
         {
             while (true)
             {
-                producerThread.GetConsumerEvent(consumerIndex).WaitOne(); // Wait for notification
-
-                lock (producerThread)
+                if(producerThread != null)
                 {
-                    var temperatureResults = ThermometerAlertSystem.GetTemperatureResults();
+                    producerThread.GetConsumerEvent(consumerIndex).WaitOne(); // Wait for notification
 
-                    var count = 0;
+                    lock (producerThread)
+                    {
+                        var temperatureResults = ThermometerAlertSystem.GetTemperatureResults();
 
-                    temperatureResults.ForEach(temperature =>
-                        Console.WriteLine(
-                            $"***************" +
-                            $"\nConsumer#{consumerIndex} Processing Temperature Alert #{++count}:" +
-                            $"\nCelsius:{temperature.Celsius}°C -> Consumer#{consumerIndex}" +
-                            $"\nFahrenheit:{temperature.Fahrenheit}°F -> Consumer#{consumerIndex}" +
-                            $"\n***************")
-                    );                               
+                        var count = 0;
+
+                        temperatureResults.ForEach(temperature =>
+                            Console.WriteLine(
+                                $"***************" +
+                                $"\nConsumer#{consumerIndex} Processing Temperature Alert #{++count}:" +
+                                $"\nCelsius:{temperature.Celsius}°C -> Consumer#{consumerIndex}" +
+                                $"\nFahrenheit:{temperature.Fahrenheit}°F -> Consumer#{consumerIndex}" +
+                                $"\n***************")
+                        );
+                    }
+                    break;
                 }
-                break;
+                
             }
         }
     }
