@@ -11,7 +11,7 @@ There is a GraphQL Mutator at the front end which feeds the Temperature Data fro
 ----- Test instructions ---
 
 1. Design and implement (in the OO language of your choice) a thermometer class or classes that read the temperature of some external source. 
-I achieved this Requirement: Implemented in C#. The temperature data originates from GraphQL mutator, which is an external source.
+I achieved this Requirement: Implemented in C#. The temperature data originates from GraphQL mutator, which is an external source. Each Consumer of the temperature data is also created via a GraphQL API call.
 
 2. The thermometer needs to be able to provide temperature in both Fahrenheit and Celsius.  
 I achieved this Requirement: The thermometer returns both Fahrenheit and Celsius when an Alert Critieria (i.e. threshold) has been breached.
