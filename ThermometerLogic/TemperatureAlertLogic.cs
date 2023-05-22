@@ -104,7 +104,9 @@ namespace TemperatureAlertSystem.ThermometerLogic
 
             bool abs_insignificant_breached = (FluxCapacitor > abs_insignificantFluctuation);
 
-            if (currentTemperature == criterion.ArbitraryThreshold && currentTemperature != previousTemperature)
+            var diff = Math.Abs(previousTemperature - currentTemperature);
+
+            if (currentTemperature == criterion.ArbitraryThreshold && currentTemperature != previousTemperature && diff > abs_insignificantFluctuation)
             {
                 threshold_breached = true;
             }
