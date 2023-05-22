@@ -109,8 +109,8 @@ namespace TemperatureAlertSystem.ThermometerLogic
                 threshold_breached = true;
             }
 
-            bool preliminaryResult = InExclusiveRange(currentTemperature, previousTemperature, criterion.ArbitraryThreshold);
-            AlertMarty = threshold_breached || preliminaryResult && abs_insignificant_breached;
+            bool inExclusiveRange = InExclusiveRange(currentTemperature, previousTemperature, criterion.ArbitraryThreshold);
+            AlertMarty = threshold_breached || inExclusiveRange && abs_insignificant_breached;
 
             return AlertMarty;
         }
