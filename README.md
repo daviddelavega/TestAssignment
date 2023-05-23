@@ -9,7 +9,7 @@
 # **1.** Install a GraphQL, I use Altair.
 # **2.** Clone this repository.
 # **3.** Execute the **TemperatureAlertSystem.exe** file located in **\bin\Debug\net6.0**
-# **4.** A Console application should startup listing URLs, you will need this URL for Altair **Now listening on: https://localhost:7142**
+# **4.** A Console should startup listing URLs, you will need this URL for Altair **Now listening on: https://localhost:7142**
       For example this goes into Altair: https://localhost:7142/graphql
 # **5.** Using Altair Add a consumer like this example:
  **mutation {
@@ -37,6 +37,7 @@
     message
   }
 }**
+# 7. The console will display the results of the temperature alert system. Make sure when adding a consumer the id is always starting at zero.
 # Development Approach Summary: 
 There is a GraphQL Mutator at the front end which feeds the Temperature Data from the outside to the application. A second mutator feeds in each consumer's Arbitrary Criteria (temperature threshold, insignificant fluctuation, Direction). The application has producer/consumer threads. The producer thread does most of the heavy lifting, and facilitates the progression through the temperature Alert System. There are multiple consumer threads started, 1 for each Alert Criteria, each call to the mutator adds a consumer, or they can be all added once in a list of consumers, giving the API lots of flexibility. 
 # Requirements & How I Achieved Them Each
