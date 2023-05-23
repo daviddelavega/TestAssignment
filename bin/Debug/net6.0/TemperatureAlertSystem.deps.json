@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "TemperatureAlertSystem/1.0.0": {
         "dependencies": {
+          "GraphQL.Server.Ui.Altair": "7.4.0",
           "HotChocolate.AspNetCore": "12.2.1",
           "HotChocolate.Data.EntityFramework": "12.2.1",
           "Microsoft.EntityFrameworkCore.Design": "6.0.0",
@@ -15,6 +16,14 @@
         },
         "runtime": {
           "TemperatureAlertSystem.dll": {}
+        }
+      },
+      "GraphQL.Server.Ui.Altair/7.4.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/GraphQL.Server.Ui.Altair.dll": {
+            "assemblyVersion": "7.4.0.0",
+            "fileVersion": "7.4.0.0"
+          }
         }
       },
       "GreenDonut/12.2.1": {
@@ -449,6 +458,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "GraphQL.Server.Ui.Altair/7.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EQzFF/16L2wMnXpRbXSlAKQXpOMQkU9uHHiKjQnI1bmrWaCf5lqoAbu6nlD1D6+FOwEsl/KqZDluh9gc8AWKNw==",
+      "path": "graphql.server.ui.altair/7.4.0",
+      "hashPath": "graphql.server.ui.altair.7.4.0.nupkg.sha512"
     },
     "GreenDonut/12.2.1": {
       "type": "package",

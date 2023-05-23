@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oZsj//aC9yEyCgoXFndcpNtawN4KfefNpPUhPEJkwOBrrGeFbgvabk0Xnyrp9D1eM0/2UdstZi4TJBAVDlWe5w==",
+  "dgSpecHash": "dELUUD7U23w/GY7G2YgFDtblYb+FtOPAR3A83dgwHipP8wFzLCpL6+5Bx6COQdB1LOMUoTC+cO4FRVQ6DzB/jw==",
   "success": true,
   "projectFilePath": "C:\\Users\\daved\\repository\\TemperatureAlertSystem\\TemperatureAlertSystem.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\daved\\.nuget\\packages\\graphql.server.ui.altair\\7.4.0\\graphql.server.ui.altair.7.4.0.nupkg.sha512",
     "C:\\Users\\daved\\.nuget\\packages\\greendonut\\12.2.1\\greendonut.12.2.1.nupkg.sha512",
     "C:\\Users\\daved\\.nuget\\packages\\hotchocolate\\12.2.1\\hotchocolate.12.2.1.nupkg.sha512",
     "C:\\Users\\daved\\.nuget\\packages\\hotchocolate.abstractions\\12.2.1\\hotchocolate.abstractions.12.2.1.nupkg.sha512",

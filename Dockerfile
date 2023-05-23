@@ -1,33 +1,32 @@
-# Set the base image to use
+# Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
 
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the project files and restore dependencies
-COPY ./*.csproj ./
+# Copy the project file and restore dependencies
+COPY TemperatureAlertSystem.csproj .
 RUN dotnet restore
 
-# Copy the application code to the container
-COPY . ./
+# Copy the remaining source code and build the application
+COPY . .
+RUN dotnet publish -c Release -o /app
 
-# Build the application
-RUN dotnet publish -c Release -o out
+# Install Altair package
+RUN dotnet add package GraphQL.Server.Ui.Altair
 
-# Set the base image for the final runtime
-FROM mcr.microsoft.com/dotnet/runtime:6.0
-
-# Set the working directory in the container
+# Stage 2: Create the final runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
+COPY --from=build /app .
 
-# Copy the built application from the previous stage
-COPY --from=build /app/out .
+# Set the environment variables (if required)
+ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_ENVIRONMENT=Development
 
+# Expose the HTTP port
+EXPOSE 80
 
-# Expose the port your application is listening on
-EXPOSE 7142
+# Start the application
+ENTRYPOINT ["dotnet", "TemperatureAlertSystem.dll"]
 
 COPY . /app
 
-# Set the entry point for the container
-CMD ["dotnet", "TemperatureAlertSystem.dll"]

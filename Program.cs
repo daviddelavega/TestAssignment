@@ -7,20 +7,19 @@ using TemperatureAlertSystem.ThermometerLogic;
 * This class is the main class for the application, it sets up the GraphQL API in an up to date way, in the style for .NET 6.
 */
 var builder = WebApplication.CreateBuilder(args);
-builder.Services   
+builder.Services
     .AddGraphQLServer()
     .AddQueryType<CurrentTemperatureQuery>()
     .AddProjections()
     .AddFiltering()
     .AddSorting()
-    .AddMutationType<Mutation>() 
+    .AddMutationType<Mutation>()
     .AddInMemorySubscriptions();
 
 ThermometerAlertSystem.Start();
 
 var app = builder.Build();
-
-app.UseWebSockets();
+app.Urls.Add("http://localhost:7412");
 app.MapGraphQL();
 
 

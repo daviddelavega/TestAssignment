@@ -110,3 +110,5 @@ C:\Users\daved\repository\backupTAS\TemperatureAlertSystem\obj\Debug\net6.0\scop
 C:\Users\daved\repository\backupTAS\TemperatureAlertSystem\obj\Debug\net6.0\TemperatureAlertSystem.csproj.CopyComplete
 C:\Users\daved\repository\backupTAS\TemperatureAlertSystem\obj\Debug\net6.0\TemperatureAlertSystem.genruntimeconfig.cache
 C:\Users\daved\repository\backupTAS\TemperatureAlertSystem\obj\Debug\net6.0\ref\TemperatureAlertSystem.dll
+C:\Users\daved\repository\TemperatureAlertSystem\bin\Debug\net6.0\GraphQL.Server.Ui.Altair.dll
+C:\Users\daved\repository\TemperatureAlertSystem\obj\Debug\net6.0\TemperatureAlertSystem.MvcApplicationPartsAssemblyInfo.cs

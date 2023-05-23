@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "GraphQL.Server.Ui.Altair/7.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/GraphQL.Server.Ui.Altair.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/GraphQL.Server.Ui.Altair.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "GreenDonut/12.2.1": {
         "type": "package",
         "dependencies": {
@@ -822,6 +838,23 @@
     }
   },
   "libraries": {
+    "GraphQL.Server.Ui.Altair/7.4.0": {
+      "sha512": "EQzFF/16L2wMnXpRbXSlAKQXpOMQkU9uHHiKjQnI1bmrWaCf5lqoAbu6nlD1D6+FOwEsl/KqZDluh9gc8AWKNw==",
+      "type": "package",
+      "path": "graphql.server.ui.altair/7.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "graphql.server.ui.altair.7.4.0.nupkg.sha512",
+        "graphql.server.ui.altair.nuspec",
+        "lib/netcoreapp3.1/GraphQL.Server.Ui.Altair.dll",
+        "lib/netcoreapp3.1/GraphQL.Server.Ui.Altair.xml",
+        "lib/netstandard2.0/GraphQL.Server.Ui.Altair.dll",
+        "lib/netstandard2.0/GraphQL.Server.Ui.Altair.xml",
+        "logo.64x64.png"
+      ]
+    },
     "GreenDonut/12.2.1": {
       "sha512": "fiP4JsTGBKgKDjzJaBCpy4rxnIWEozKWNCDDPeKFL6M5Q5+tITKzeM6iTK73f1OnJzkpZwIRFKoHRH8ROO9IBw==",
       "type": "package",
@@ -1994,6 +2027,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "GraphQL.Server.Ui.Altair >= 7.4.0",
       "HotChocolate.AspNetCore >= 12.2.1",
       "HotChocolate.Data.EntityFramework >= 12.2.1",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.0",
@@ -2045,6 +2079,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "GraphQL.Server.Ui.Altair": {
+            "target": "Package",
+            "version": "[7.4.0, )"
+          },
           "HotChocolate.AspNetCore": {
             "target": "Package",
             "version": "[12.2.1, )"
