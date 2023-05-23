@@ -5,6 +5,38 @@
 # Platform: .NET 6
 # Project: ASP.Net Web Application.
 # Extras: 30 Sanity Test Cases created. DockerFile created. GraphQL Query created.
+# How to Run the Application:
+**1.** Install a GraphQL client for example Altair.
+**2.** Clone this repository.
+**3.** Locate and execute the **TemperatureAlertSystem.exe** file within the repository located in **..\bin\Debug\net6.0**
+      For example the **TemperatureAlertSystem.exe** is located here: C:\Users\daved\repository\TemperatureAlertSystem\bin\Debug\net6.0
+**4.** A Console application should startup listing URLs, you will need this URL for Altair **Now listening on: http://localhost:7412**
+**5.** Using Altair Add a consumer like this example:
+ **mutation {
+  addConsumer(
+    alertCriteria: [
+      {
+        id: 0
+        arbitraryThreshold: -50.5
+        insignificantFluctuation: 2.0
+        direction: FALLING
+      }
+    ]
+  ) {
+    isSuccess
+    message
+  }
+}**
+
+**6.** Add The Temperature Test Data like this example:
+**mutation {
+  uploadTemperatures(
+    inputTemperatures: [-10.0, -40.0, -50.0, -51.5, -60.0, -40.0]
+  ) {
+    isSuccess
+    message
+  }
+}**
 # Development Approach Summary: 
 There is a GraphQL Mutator at the front end which feeds the Temperature Data from the outside to the application. A second mutator feeds in each consumer's Arbitrary Criteria (temperature threshold, insignificant fluctuation, Direction). The application has producer/consumer threads. The producer thread does most of the heavy lifting, and facilitates the progression through the temperature Alert System. There are multiple consumer threads started, 1 for each Alert Criteria, each call to the mutator adds a consumer, or they can be all added once in a list of consumers, giving the API lots of flexibility. 
 # Requirements & How I Achieved Them Each
