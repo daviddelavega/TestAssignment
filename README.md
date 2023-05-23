@@ -6,12 +6,13 @@
 # Project: ASP.Net Web Application.
 # Extras: 30 Sanity Test Cases created. DockerFile created. GraphQL Query created.
 # How to Run the Application:
-**1.** Install a GraphQL client for example Altair.
-**2.** Clone this repository.
-**3.** Locate and execute the **TemperatureAlertSystem.exe** file within the repository located in **..\bin\Debug\net6.0**
+# **1.** Install a GraphQL, I use Altair.
+# **2.** Clone this repository.
+# **3.** Locate and execute the **TemperatureAlertSystem.exe** file within the repository located in **..\bin\Debug\net6.0**
       For example the **TemperatureAlertSystem.exe** is located here: C:\Users\daved\repository\TemperatureAlertSystem\bin\Debug\net6.0
-**4.** A Console application should startup listing URLs, you will need this URL for Altair **Now listening on: http://localhost:7412**
-**5.** Using Altair Add a consumer like this example:
+# **4.** A Console application should startup listing URLs, you will need this URL for Altair **Now listening on: http://localhost:7142**
+      For example this goes into Altair: https://localhost:7142/graphql
+# **5.** Using Altair Add a consumer like this example:
  **mutation {
   addConsumer(
     alertCriteria: [
@@ -28,7 +29,7 @@
   }
 }**
 
-**6.** Add The Temperature Test Data like this example:
+# **6.** Add The Temperature Test Data like this example:
 **mutation {
   uploadTemperatures(
     inputTemperatures: [-10.0, -40.0, -50.0, -51.5, -60.0, -40.0]
