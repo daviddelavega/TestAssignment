@@ -19,7 +19,7 @@ builder.Services
 ThermometerAlertSystem.Start();
 
 var app = builder.Build();
-app.Urls.Add("http://localhost:7412");
+app.Urls.Add("http://localhost:7142");
 app.MapGraphQL();
 
 
