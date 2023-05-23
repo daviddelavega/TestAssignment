@@ -8,8 +8,7 @@
 # How to Run the Application:
 # **1.** Install a GraphQL, I use Altair.
 # **2.** Clone this repository.
-# **3.** Execute the **TemperatureAlertSystem.exe** file within the repository located in **\bin\Debug\net6.0**
-      For example the **TemperatureAlertSystem.exe** is located here: C:\Users\daved\repository\TemperatureAlertSystem\bin\Debug\net6.0
+# **3.** Execute the **TemperatureAlertSystem.exe** file located in **\bin\Debug\net6.0**
 # **4.** A Console application should startup listing URLs, you will need this URL for Altair **Now listening on: https://localhost:7142**
       For example this goes into Altair: https://localhost:7142/graphql
 # **5.** Using Altair Add a consumer like this example:
