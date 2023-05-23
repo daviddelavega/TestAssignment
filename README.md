@@ -6,7 +6,7 @@
 # Project: ASP.Net Web Application.
 # Extras: 30 Sanity Test Cases created. DockerFile created. GraphQL Query created.
 # How to Run the Application:
-# **1.** Install a GraphQL, I use Altair.
+# **1.** Install a GraphQL client, I use Altair.
 # **2.** Clone this repository.
 # **3.** Execute the **TemperatureAlertSystem.exe** file located in **\bin\Debug\net6.0**
 # **4.** A Console should startup listing URLs, you will need this URL for Altair **Now listening on: https://localhost:7142**
