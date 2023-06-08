@@ -1,4 +1,4 @@
-# Thermometer Temperature Alert System in Celsius & Fahrenheit
+# Thermometer Temperature Alert MicroService in Celsius & Fahrenheit
 # Technology Stack: 
 # API: GraphQL 
 # Programming Language: C#
