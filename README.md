@@ -3,7 +3,7 @@
 # API: GraphQL 
 # Programming Language: C#
 # Platform: .NET 6
-# Project: ASP.Net Web Application.
+# Project: ASP.Net Microservice Web Application.
 # Extras: 30 Sanity Test Cases created. DockerFile created. GraphQL Query created.
 # How to Run the Application:
 # **1.** Install a GraphQL client, I use Altair.
